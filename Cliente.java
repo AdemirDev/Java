@@ -1,84 +1,73 @@
-import java.util.Scanner;
+package Aula18_Interface;
 
-import javax.swing.JOptionPane;
-
-public class Cliente {
+public class Cliente implements Dao,DEA {
 	
+	private int codigo;
 	private String nome;
-	private int idade;
-	private char sexo;
-	private int cpf;
-	private String cep;
 	
-	
-	public Cliente(String nome, int idade, char sexo, int cpf, String cep) {
-		super();
-		this.nome = nome;
-		this.idade = idade;
-		this.sexo = sexo;
-		this.cpf = cpf;
-		this.cep = cep;
+	public Cliente(int codigo, String nome) {
+		this.codigo=codigo;
+		this.nome= nome;
 	}
 
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
 
 	public String getNome() {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-
-	public int getIdade() {
-		return idade;
-	}
-
-
-	public void setIdade(int idade) {
-		this.idade = idade;
-	}
-
-
-	public char getSexo() {
-		return sexo;
-	}
-
-
-	public void setSexo(char sexo) {
-		this.sexo = sexo;
-	}
-
-
-	public int getCpf() {
-		return cpf;
-	}
-
-
-	public void setCpf(int cpf) {
-		this.cpf = cpf;
-	}
-
-
-	public String getCep() {
-		return cep;
-	}
-
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-	
-	public void dadoscliente () {
+	@Override
+	public void inserir() {
+		// TODO Auto-generated method stub
 		
-		Scanner sc = new Scanner(System.in);
+	}
+
+	@Override
+	public void exlcuir() {
+		// TODO Auto-generated method stub
 		
-		   JOptionPane.showInputDialog("Qual seu nome? ");
+	}
+
+	@Override
+	public void localizar() {
+		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void calcular() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void listar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void atualizarLista() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void excluirLista() {
+		// TODO Auto-generated method stub
 		
 	}
 	
 	
+
 }
-

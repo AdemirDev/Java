@@ -1,19 +1,28 @@
+package Aula15;
 
 public class Veiculo {
 	
-	public String marca;
-	public String modelo;
-	public int anofabricacao;
+	private String marca;
+	private String modelo;
+	private int anoFabricacao;
 	private String placa;
-	public double valorTabela;
+	private double valor;
 	
-	public Veiculo(String marca, String modelo, int anofabricacao, String placa, double valorTabela) {
+	public Veiculo(String marca, String modelo, int anoFabricacao, String placa, double valor) {
 		super();
 		this.marca = marca;
 		this.modelo = modelo;
-		this.anofabricacao = anofabricacao;
+		this.anoFabricacao = anoFabricacao;
 		this.placa = placa;
-		this.valorTabela = valorTabela;
+		this.valor = valor;
+	}
+
+	public double getValor() {
+		return valor;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 
 	public String getMarca() {
@@ -32,12 +41,12 @@ public class Veiculo {
 		this.modelo = modelo;
 	}
 
-	public int getAnofabricacao() {
-		return anofabricacao;
+	public int getAnoFabricacao() {
+		return anoFabricacao;
 	}
 
-	public void setAnofabricacao(int anofabricacao) {
-		this.anofabricacao = anofabricacao;
+	public void setAnoFabricacao(int anoFabricacao) {
+		this.anoFabricacao = anoFabricacao;
 	}
 
 	public String getPlaca() {
@@ -48,17 +57,7 @@ public class Veiculo {
 		this.placa = placa;
 	}
 
-	public double getValorTabela() {
-		return valorTabela;
-	}
-
-	public void setValorTabela(double valorTabela) {
-		this.valorTabela = valorTabela;
-	}
 	
 	
-		
-	}
-	
-
+}
 
