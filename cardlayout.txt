@@ -1,0 +1,54 @@
+package programas;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class TrocarJanela extends JFrame {
+    private JPanel cardPanel;
+    private CardLayout cardLayout;
+
+    public TrocarJanela() {
+        setTitle("Trocar Janela");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(300, 200);
+
+        // Criação dos painéis
+        JPanel panel1 = new JPanel();
+        panel1.add(new JLabel("Janela 1"));
+
+        JPanel panel2 = new JPanel();
+        panel2.add(new JLabel("Janela 2"));
+
+        // Configuração do CardLayout
+        cardLayout = new CardLayout();
+        cardPanel = new JPanel(cardLayout);
+        cardPanel.add(panel1, "Janela1");
+        cardPanel.add(panel2, "Janela2");
+
+        // Adiciona o cardPanel ao JFrame
+        add(cardPanel, BorderLayout.CENTER);
+
+        // Criação do botão para alternar entre as janelas
+        JButton trocarBotao = new JButton("Trocar Janela");
+        trocarBotao.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.next(cardPanel);
+            }
+        });
+
+        // Adiciona o botão ao JFrame
+        add(trocarBotao, BorderLayout.SOUTH);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                TrocarJanela trocarJanela = new TrocarJanela();
+                trocarJanela.setVisible(true);
+            }
+        });
+    }
+}

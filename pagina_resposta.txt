@@ -1,0 +1,54 @@
+Desenvolva um sistema de cadastro de curriculuns com as seguintes características:
+
+A página principal deverá contar um formulário com os seguintes campos:
+
+Sistema de cadastro de curriculum
+
+Dados Pessoais /// option select
+nome
+endereco
+telefone
+email
+
+Formação Acadêmica
+
+Curso:
+Instituição:
+inicio:     conclusao
+
+
+Experiencia Profissional
+
+
+Empresa
+cargo
+inicio
+fim
+
+
+Interesses Diversos
+
+botão enviar
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Ao clicar no botão enviar deverá ser apresentado o curriculum cadastrado e um botão confirmar.
+
+A página secundária deverá exibir os dados do curriculum enviado.
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Ao clicar no botão confirmar deve ser exibida uma mensagem de agradecimento. 
+
+O última página
+
+Obrigado por enviar seu curriculum "nome usuário"
+
+
+Curriculum Enviado com sucesso!
+
+
+

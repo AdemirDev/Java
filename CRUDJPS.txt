@@ -1,0 +1,106 @@
+<%@ page import="java.sql.*" %>
+<%@ page import="seupacote.User" %>
+
+<%
+    String url = "jdbc:mysql://localhost:3306/seubanco";
+    String usuario = "seuusuario";
+    String senha = "suasenha";
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection = DriverManager.getConnection(url, usuario, senha);
+
+        // Operação de Adicionar Usuário
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            String nome = request.getParameter("nome");
+            String email = request.getParameter("email");
+            String addSql = "INSERT INTO usuarios (nome, email) VALUES (?, ?)";
+            try (PreparedStatement statement = connection.prepareStatement(addSql)) {
+                statement.setString(1, nome);
+                statement.setString(2, email);
+                statement.executeUpdate();
+            }
+        }
+
+        // Operação de Ler Usuários
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM usuarios");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Usuários</title>
+</head>
+<body>
+    <h1>Lista de Usuários</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Ações</th>
+        </tr>
+        <% while (resultSet.next()) { %>
+            <tr>
+                <td><%= resultSet.getInt("id") %></td>
+                <td><%= resultSet.getString("nome") %></td>
+                <td><%= resultSet.getString("email") %></td>
+                <td>
+                    <a href="index.jsp?operacao=editar&id=<%= resultSet.getInt("id") %>">Editar</a>
+                    <a href="index.jsp?operacao=excluir&id=<%= resultSet.getInt("id") %>">Excluir</a>
+                </td>
+            </tr>
+        <% } %>
+    </table>
+
+    <h2>Adicionar Usuário</h2>
+    <form action="index.jsp" method="post">
+        Nome: <input type="text" name="nome" required><br>
+        Email: <input type="text" name="email" required><br>
+        <input type="submit" value="Adicionar">
+    </form>
+
+<%
+        // Operação de Editar Usuário
+        if (request.getParameter("operacao") != null && request.getParameter("operacao").equals("editar")) {
+            int userId = Integer.parseInt(request.getParameter("id"));
+            String editSql = "SELECT * FROM usuarios WHERE id=?";
+            try (PreparedStatement editStatement = connection.prepareStatement(editSql)) {
+                editStatement.setInt(1, userId);
+                ResultSet editResultSet = editStatement.executeQuery();
+
+                if (editResultSet.next()) {
+                    String nome = editResultSet.getString("nome");
+                    String email = editResultSet.getString("email");
+%>
+    <h2>Editar Usuário</h2>
+    <form action="index.jsp" method="post">
+        <input type="hidden" name="operacao" value="editar">
+        <input type="hidden" name="id" value="<%= userId %>">
+        Nome: <input type="text" name="nome" value="<%= nome %>" required><br>
+        Email: <input type="text" name="email" value="<%= email %>" required><br>
+        <input type="submit" value="Salvar Alterações">
+    </form>
+<%
+                }
+            }
+        }
+
+        // Operação de Excluir Usuário
+        if (request.getParameter("operacao") != null && request.getParameter("operacao").equals("excluir")) {
+            int userId = Integer.parseInt(request.getParameter("id"));
+            String deleteSql = "DELETE FROM usuarios WHERE id=?";
+            try (PreparedStatement deleteStatement = connection.prepareStatement(deleteSql)) {
+                deleteStatement.setInt(1, userId);
+                deleteStatement.executeUpdate();
+            }
+            response.sendRedirect("index.jsp");
+        }
+
+        connection.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>
+</body>
+</html>
